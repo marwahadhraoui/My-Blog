@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+
+
+	{# ***************************************************************************************************** #}
+	<!-- Carousel wrapper -->
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+           <video class="img-fluid" autoplay loop muted>
+        <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
+      </video>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>My Caption Title (1st Image)</h5>
+                <p>The whole caption will only show up if the screen is at least medium size.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <video class="img-fluid" autoplay loop muted>
+        <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
+      </video>
+        </div>
+        <div class="carousel-item">
+            <video class="img-fluid" autoplay loop muted>
+        <source
+          src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4"
+          type="video/mp4"
+        />
+      </video>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+	<!-- Carousel wrapper -->
+
+
+	{# ************************************************************************************************************ #}
+	<style>{% include 'css/file.css' %}</style>
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+	<div class="container-contact1000">
+		<div class="wrap-contact1000">
+			<section class="hero-section">
+				<div class="card-grid">
+					{% for post in posts %}
+						<a class="card" href="#">
+							<div class="card__background" style="background-image: url(https://source.unsplash.com/640x480/?portrait/?img=1"></div>
+							<div class="card__content">
+
+								<h3 class="card__heading" style="color:white;">
+									{{post.title}}</h3>
+								<p class="card-text" style="color:white;">{{post.content}}</p>
+								<p style="color:white;">{{post.category}}</p>
+							</div>
+						</a>
+						{# <a class="card" href="#">
+						      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+						      <div class="card__content">
+						        <h3 class="card__heading">Card Heading</h3>
+						      </div>
+						    </a>
+						    <a class="card" href="#">
+						      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+						      <div class="card__content">
+						        <h3 class="card__heading"> Card Heading</h3>
+						      </div>
+						    </li>
+						    <a class="card" href="#">
+						      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+						      <div class="card__content">
+						        <h3 class="card__heading"> Card Heading</h3>
+						      </div>
+						    </a> #}
+					{% endfor %}
+					<div></section>
+				</div>
+			</div>
+      {# ************************************************************************************************************************************** #}
+      <div style ="margin-left: 12%;">
+      <iframe width="300" height="260" src="https://www.youtube.com/embed/hP22S8eThfc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       <iframe width="300" height="260" src="https://www.youtube.com/embed/KyKL4rIDFcg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="300" height="260" src="https://www.youtube.com/embed/0rY2HANjPXE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      
+		{% endblock %}
+
+
+		{#*******************************************************************************************************  #}

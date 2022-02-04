@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-10">
+
+				<img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+
+				<h5>{{post.title}}</h5>
+				<p>{{post.content}}</p>
+				<p>{{post.category}}</p>
+			</div>
+		</div>
+            <a class ="btn btn-primary" href="/home">Retour </a>
+
+	</div>
+{% endblock %}
