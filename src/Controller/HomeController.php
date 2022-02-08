@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Post;
@@ -14,11 +14,18 @@ class HomeController extends AbstractController
     /**
      * @Route("/blog", name="home")
      */
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $em = $doctrine->getManager();
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $posts = $repo->findAll();
-
+        foreach ($posts as $post){
+            $tmp = str_replace('&nbsp;','',strip_tags($post->getContent()));
+            $tmp = str_replace(';','',$tmp);
+            $post->setContent($tmp);
+            $em->persist($post);
+            $em->flush();
+        }
         $cat = $this->getDoctrine()->getRepository(Category::class);
         $categories = $cat->findAll();
         return $this->render('home/index.html.twig', [
@@ -50,7 +57,6 @@ class HomeController extends AbstractController
 
         $cat = $this->getDoctrine()->getRepository(Category::class);
         $categories = $cat->findAll();
-        
         return $this->render('base.html.twig', [
             'posts'=>$posts,
             'categories' =>$categories
