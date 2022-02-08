@@ -74,15 +74,18 @@ class HomeController extends AbstractController
         ]);
     }  
 
-    /**
-     * @Route("/")
+   /**
+     * @Route("/form/{id}",name="form",methods={"GET"})
      */
-    public function homepage()
-    {
-        return $this->render('index.html.twig');
-    } 
+    public function form($id):Response
 
-   
+    {
+      
+        return $this->render('hotel/form.html.twig',[
+            'id' => $id
+        ]);
+       
+    }  
     
     
 }

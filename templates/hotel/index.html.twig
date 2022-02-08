@@ -1,0 +1,296 @@
+{% block title %}{% endblock %}
+
+{% block body %}
+
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" href="https://i.imgur.com/xC5FUN8.jpg" type="image/png">
+		<title>VSP</title>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<style>{% include 'css/bootstrap.css' %}</style>
+		<style>{% include 'css/font-awesome.min.css' %}</style>
+		<style>{% include 'css/bootstrap-datetimepicker.min.css' %}</style>
+		<style>{% include 'css/nice-select.css' %}</style>
+		<style>{% include 'css/owl.carousel.min.css' %}</style>
+		<!-- main css -->
+		<style>
+			{% include 'css/style.css' %}</style>
+		<style>
+			{% include 'css/responsive.css' %}</style>
+
+	</head>
+	<body>
+		<!--================Breadcrumb Area =================-->
+		<section class="breadcrumb_area">
+			<div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+			<div class="container">
+				<div class="page-cover text-center">
+					<h2 class="page-cover-tittle">Hotels</h2>
+					<ol class="breadcrumb">
+						<li>
+							<a href="index.html">Home</a>
+						</li>
+						<li class="active">Hotels</li>
+					</ol>
+				</div>
+			</div>
+		</section>
+		<!--================Breadcrumb Area =================-->
+
+		<!--================ Accomodation Area  =================-->
+		<section class="accomodation_area section_gap">
+			<div class="container">
+				<div class="section_title text-center">
+					<h2 class="title_color">Meilleurs Hôtels Pour Vous</h2>
+					<p>Nous vivons tous à une époque qui appartient aux jeunes de cœur. La vie qui devient extrêmement rapide</p>
+				</div>
+				<div class="row mb_30">
+					{% for hotel in hotels %}
+						<div class="col-lg-3 col-sm-6">
+							<div class="accomodation_item text-center">
+								<div class="hotel_img">
+									<img src="{{hotel.image}}" alt="" width="800px" height="500px">
+									<a href="/form/{{hotel.id}}" class="btn theme_btn button_hover">Réserver</a>
+								</div>
+								<a href="#">
+									<h4 class="sec_h4">{{hotel.nom}}</h4>
+								</a>
+								<p>Hôtel {{hotel.nbetoiles}} étoiles</p>
+								<p>{{hotel.adresse}}, {{hotel.telephone}}</p>
+
+								<h5>${{hotel.prixnuitee}}<small>/nuitée</small>
+								</h5>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+		<!--================ Accomodation Area  =================-->
+		<!--================Booking Tabel Area =================-->
+		<section>
+
+			<section class="accomodation_area section_gap">
+				<div class="container">
+					<div class="section_title text-center">
+						<h2 class="title_color">
+							<h2 class="title_color">Chambres</h2>
+							<p>Tu ne vis qu'une fois, mais si tu le fais bien, une fois suffit</p>
+						</div>
+						<div class="row accomodation_two">
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="https://i.imgur.com/7oO389G.jpg" alt="">
+									</div>
+									<a href="#">
+										<h4 class="sec_h4">Double Deluxe Room</h4>
+									</a>
+									<h5>$250<small>/night</small>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="https://i.imgur.com/fFfWS06.jpg" alt="">
+									</div>
+									<a href="#">
+										<h4 class="sec_h4">Single Deluxe Room</h4>
+									</a>
+									<h5>$200<small>/night</small>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="https://i.imgur.com/t20XeUE.jpg" alt="">
+									</div>
+									<a href="#">
+										<h4 class="sec_h4">Honeymoon Suit</h4>
+									</a>
+									<h5>$750<small>/night</small>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="https://i.imgur.com/ko2LMNd.jpg" alt="">
+									</div>
+									<a href="#">
+										<h4 class="sec_h4">Economy Double</h4>
+									</a>
+									<h5>$200<small>/night</small>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="https://i.imgur.com/oKd2V7S.jpg" alt="">
+									</div>
+									<a href="#">
+										<h4 class="sec_h4">Double Deluxe Room</h4>
+									</a>
+									<h5>$250<small>/night</small>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="https://i.imgur.com/UYD08Rt.jpg" alt="">
+									</div>
+									<a href="#">
+										<h4 class="sec_h4">Single Deluxe Room</h4>
+									</a>
+									<h5>$200<small>/night</small>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="https://i.imgur.com/EtHcgBH.jpg" alt="">
+									</div>
+									<a href="#">
+										<h4 class="sec_h4">Honeymoon Suit</h4>
+									</a>
+									<h5>$750<small>/night</small>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="https://i.imgur.com/yiNyHa1.jpg" alt="">
+									</div>
+									<a href="#">
+										<h4 class="sec_h4">Economy Double</h4>
+									</a>
+									<h5>$200<small>/night</small>
+									</h5>
+								</div>
+							</div>
+						</div>
+					</body>
+				</div>
+			</section><!--================ Accomodation Area  =================--><!--================ start footer Area  =================--><footer class="footer-area section_gap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3  col-md-6 col-sm-6">
+							<div class="single-footer-widget">
+								<h6 class="footer_title">Voyages Services Plus</h6>
+								<p>
+									62, Rue Caumartin
+									<br>
+									75009 Paris - France<br><br>
+									<strong>Phone :</strong>
+									+33 (0)1 _44 63 14 18<br>
+									<strong>Fax :</strong>
+									+33 (0)1 44 63 14 16<br>
+									<strong>Email :</strong>
+									contact@vsp-bleuciel.fr<br>
+									<strong>Site :</strong>
+									www.vsp-incoming.com<br>
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-3  col-md-6 col-sm-6">
+							<div class="single-footer-widget">
+								<h6 class="footer_title">Group department</h6>
+								<ul>
+									<li>
+										Voyages Services Plus</li>
+									<li>
+										Phone : +33 (0)1 _44 63 14 25</li>
+									<li>
+										Email : groupe@vsp-bleuciel.fr</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-lg-3  col-md-6 col-sm-6">
+							<div class="single-footer-widget">
+								<h6 class="footer_title">Individual Department</h6>
+								<ul>
+									<li>Voyages Services Plus</li>
+									<li>Phone : +33 (0)1 _44 63 14 32</li>
+									<li>Fax : +33 (0)1 44 63 14 16</li>
+									<li>Email : fit@vsp-bleuciel.fr</li>
+								</ul>
+							</div>
+						</div>
+
+
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							<div class="single-footer-widget">
+								<h6 class="footer_title">Newsletter</h6>
+								<p>For business professionals caught between high OEM price and mediocre print and graphic
+														                            output,
+								</p>
+								<div id="mc_embed_signup">
+									<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
+										<div class="input-group d-flex flex-row">
+											<input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
+											<button class="btn sub-btn">
+												<span class="lnr lnr-location"></span>
+											</button>
+										</div>
+										<div class="mt-10 info"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="border_line"></div>
+					<div class="row footer-bottom d-flex justify-content-between align-items-center">
+						<p class="col-lg-8 col-sm-12 footer-text m-0">
+
+							Copyright &copy;
+							<script>
+								document.write(new Date().getFullYear());
+							</script>
+							All rights reserved |
+										                    Made By
+							<i class="fa fa-heart-o" aria-hidden="true"></i>
+							<a href="https://www.nextwebplus.fr/" target="_blank">nextwebplus</a>
+
+						</p>
+						<div class="col-lg-4 col-sm-12 footer-social">
+							<a href="#">
+								<i class="fa fa-facebook"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-twitter"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-dribbble"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-behance"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</footer><!--================ End footer Area  =================--><!-- Optional JavaScript --><!-- jQuery first, then Popper.js, then Bootstrap JS --><script src="../../vendor/js/jquery-3.2.1.min.js"> </script>
+			<script src="../../vendor/js/popper.js"></script>
+			<script src="../../vendor/js/bootstrap.min.js"></script>
+			<script src="../../vendor/js/owl-carousel/owl.carousel.min.js"></script>
+			<script src="../../vendor/js/jquery.ajaxchimp.min.js"></script>
+			<script src="../../vendor/js/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+			<script src="../../vendor/js/nice-select/js/jquery.nice-select.js"></script>
+			<script src="../../vendor/js/mail-script.js"></script>
+			<script src="../../vendor/js/stellar.js"></script>
+			<script src="../../vendor/js/lightbox/simpleLightbox.min.js"></script>
+			<script src="../../vendor/js/custom.js"></script>
+		</body>
+	</body>
+</html>{% endblock %}
