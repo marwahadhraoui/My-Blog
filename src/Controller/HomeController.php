@@ -63,22 +63,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/contact",name="contact")
-     */
-    public function contact()
-
-    {
-        $repo = $this->getDoctrine()->getRepository(Post::class);
-        $posts = $repo->findAll();
-
-        $cat = $this->getDoctrine()->getRepository(Category::class);
-        $categories = $cat->findAll();
-        return $this->render('home/contact.html.twig', [
-            'posts'=>$posts,
-            'categories' =>$categories
-        ]);
-    }  
 
    /**
      * @Route("/form/{id}",name="form",methods={"GET"})

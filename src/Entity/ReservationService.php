@@ -2,15 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ClientRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\ReservationServiceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ClientRepository::class)
+ * @ORM\Entity(repositoryClass=ReservationServiceRepository::class)
  */
-class Client
+class ReservationService
 {
     /**
      * @ORM\Id
@@ -22,12 +20,12 @@ class Client
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $nom_client;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prenom;
+    private $prenom_client;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,40 +38,35 @@ class Client
     private $telephone;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Service::class, inversedBy="clients")
+     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="reservationServices")
      */
     private $service;
-
-    public function __construct()
-    {
-        $this->service = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getNomClient(): ?string
     {
-        return $this->nom;
+        return $this->nom_client;
     }
 
-    public function setNom(string $nom): self
+    public function setNomClient(string $nom_client): self
     {
-        $this->nom = $nom;
+        $this->nom_client = $nom_client;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getPrenomClient(): ?string
     {
-        return $this->prenom;
+        return $this->prenom_client;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setPrenomClient(string $prenom_client): self
     {
-        $this->prenom = $prenom;
+        $this->prenom_client = $prenom_client;
 
         return $this;
     }
@@ -102,26 +95,14 @@ class Client
         return $this;
     }
 
-    /**
-     * @return Collection|Service[]
-     */
-    public function getService(): Collection
+    public function getService(): ?Service
     {
         return $this->service;
     }
 
-    public function addService(Service $service): self
+    public function setService(?Service $service): self
     {
-        if (!$this->service->contains($service)) {
-            $this->service[] = $service;
-        }
-
-        return $this;
-    }
-
-    public function removeService(Service $service): self
-    {
-        $this->service->removeElement($service);
+        $this->service = $service;
 
         return $this;
     }

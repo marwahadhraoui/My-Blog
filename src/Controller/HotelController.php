@@ -56,6 +56,7 @@ class HotelController extends AbstractController
         $reservationH->setTelephone($_GET['telephone']);
         $reservationH->setEmail($_GET['email']);
         $reservationH->setChecks($check);
+        $reservationH->setHotel($h);
 
         $em->persist($reservationH);
         $em->flush();

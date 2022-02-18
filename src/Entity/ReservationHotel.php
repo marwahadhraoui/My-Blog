@@ -52,15 +52,17 @@ class ReservationHotel
      */
     private $email;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="reservationHotels")
-     */
-    private $chambre;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Reservation::class, inversedBy="reservationHotels")
      */
     private $checks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="reservationHotels")
+     */
+    private $hotel;
 
     public function getId(): ?int
     {
@@ -151,17 +153,9 @@ class ReservationHotel
         return $this;
     }
 
-    public function getChambre(): ?Chambre
-    {
-        return $this->chambre;
-    }
+    
 
-    public function setChambre(?Chambre $chambre): self
-    {
-        $this->chambre = $chambre;
-
-        return $this;
-    }
+   
 
     public function getChecks(): ?Reservation
     {
@@ -171,6 +165,18 @@ class ReservationHotel
     public function setChecks(?Reservation $checks): self
     {
         $this->checks = $checks;
+
+        return $this;
+    }
+
+    public function getHotel(): ?Hotel
+    {
+        return $this->hotel;
+    }
+
+    public function setHotel(?Hotel $hotel): self
+    {
+        $this->hotel = $hotel;
 
         return $this;
     }

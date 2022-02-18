@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Service;
 use App\Entity\Client;
+use App\Entity\ReservationService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,38 +31,41 @@ class ServiceController extends AbstractController
      * @Route("/reserver/", name="reserver",methods={"GET"})
      */
     public function reserver(ManagerRegistry $doctrine)
-    
-    {   
+
+    {
         $entityManager = $doctrine->getManager();
-        
-        
+
+
         //récuperer l'id du service
         $serviceId = $_GET['serviceId'];
-       
+
         //création de l'objet service
-        $service =new Service();
+        $service = new Service();
 
         //création de l'objet client
-        $client = new Client();
+        $reservationService = new ReservationService();
 
         //recupérer les données du service selectionnné
-        $repo =$this->getDoctrine()->getRepository(Service::class);
+        $repo = $this->getDoctrine()->getRepository(Service::class);
         $service_info = $repo->find($serviceId);
-
-        //set les données du client
-        $client->setNom($_GET['nom']);
-        $client->setPrenom($_GET['prenom']);
-        $client->setMail($_GET['mail']);
-        $client->setTelephone($_GET['telephone']);
-        $client->addService($service_info);
-        
+        // diminuer la quantité de stock
+        $service_info->setStock(($service_info->getStock()) - 1);
        
-        $entityManager->persist($client);
-        $entityManager->flush();
-        //redirect to second form
 
-        return $this->render('payment/index.html.twig', [
-            'service' => $service_info,
-        ]);
+            //set les données du client
+            $reservationService->setNomClient($_GET['nom']);
+            $reservationService->setPrenomClient($_GET['prenom']);
+            $reservationService->setMail($_GET['mail']);
+            $reservationService->setTelephone($_GET['telephone']);
+            $reservationService->setService($service_info);
+
+
+            $entityManager->persist($reservationService);
+            $entityManager->flush();
+            //redirect to second form
+            return $this->render('payment/index.html.twig', [
+                'service' => $service_info,
+            ]);
+       
     }
 }

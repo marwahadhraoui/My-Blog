@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HotelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Hotel
      * @ORM\Column(type="integer")
      */
     private $prix_nuitee;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ReservationHotel::class, mappedBy="hotel")
+     */
+    private $reservationHotels;
+
+    public function __construct()
+    {
+        $this->reservationHotels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -122,5 +134,39 @@ class Hotel
         $this->prix_nuitee = $prix_nuitee;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|ReservationHotel[]
+     */
+    public function getReservationHotels(): Collection
+    {
+        return $this->reservationHotels;
+    }
+
+    public function addReservationHotel(ReservationHotel $reservationHotel): self
+    {
+        if (!$this->reservationHotels->contains($reservationHotel)) {
+            $this->reservationHotels[] = $reservationHotel;
+            $reservationHotel->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationHotel(ReservationHotel $reservationHotel): self
+    {
+        if ($this->reservationHotels->removeElement($reservationHotel)) {
+            // set the owning side to null (unless already changed)
+            if ($reservationHotel->getHotel() === $this) {
+                $reservationHotel->setHotel(null);
+            }
+        }
+
+        return $this;
+    }
+    function __toString()
+    {
+        return strval($this->id);
     }
 }
