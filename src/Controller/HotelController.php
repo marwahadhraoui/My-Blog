@@ -20,7 +20,7 @@ class HotelController extends AbstractController
 
     {
         $repo = $this->getDoctrine()->getRepository(Hotel::class);
-        $hotels = $repo->findAll();
+        $hotels = $repo->findBy(['disponible'=>true]);
         $session = new Session();
         $id = $session->get('id');
         return $this->render('hotel/index.html.twig', [
@@ -40,8 +40,6 @@ class HotelController extends AbstractController
         $h = $hotel->findOneBy(['id' => $idH]);
         $nomHotel =$h->getNom();
         $prixNuitee = $h->getPrixNuitee();
-        
-
         $em = $doctrine->getManager();
         $session = new Session();
         $id = $session->get('id');

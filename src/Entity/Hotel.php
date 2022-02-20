@@ -54,6 +54,11 @@ class Hotel
      */
     private $reservationHotels;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $disponible;
+
     public function __construct()
     {
         $this->reservationHotels = new ArrayCollection();
@@ -168,5 +173,17 @@ class Hotel
     function __toString()
     {
         return strval($this->id);
+    }
+
+    public function getDisponible(): ?bool
+    {
+        return $this->disponible;
+    }
+
+    public function setDisponible(bool $disponible): self
+    {
+        $this->disponible = $disponible;
+
+        return $this;
     }
 }

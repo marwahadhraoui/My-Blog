@@ -10,7 +10,6 @@
 		<link rel="icon" href="https://i.imgur.com/xC5FUN8.jpg" type="image/png">
 		<title>VSP</title>
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<style>{% include 'css/bootstrap.css' %}</style>
 		<style>{% include 'css/font-awesome.min.css' %}</style>
 		<style>{% include 'css/bootstrap-datetimepicker.min.css' %}</style>
@@ -49,7 +48,9 @@
 					<p>Nous vivons tous à une époque qui appartient aux jeunes de cœur. La vie qui devient extrêmement rapide</p>
 				</div>
 				<div class="row mb_30">
+					{% if (hotels|length) > 0 %}
 					{% for hotel in hotels %}
+					
 						<div class="col-lg-3 col-sm-6">
 							<div class="accomodation_item text-center">
 								<div class="hotel_img">
@@ -66,7 +67,14 @@
 								</h5>
 							</div>
 						</div>
-					{% endfor %}
+						{% endfor %}
+						{% else %}
+						<h2 style="padding-left: 300px;"> Desolé ! Aucun hotel n'est disponible </h2>
+						{% endif %}
+					
+					
+
+					
 				</div>
 			</div>
 		</section>
@@ -280,17 +288,7 @@
 						</div>
 					</div>
 				</div>
-			</footer><!--================ End footer Area  =================--><!-- Optional JavaScript --><!-- jQuery first, then Popper.js, then Bootstrap JS --><script src="../../vendor/js/jquery-3.2.1.min.js"> </script>
-			<script src="../../vendor/js/popper.js"></script>
-			<script src="../../vendor/js/bootstrap.min.js"></script>
-			<script src="../../vendor/js/owl-carousel/owl.carousel.min.js"></script>
-			<script src="../../vendor/js/jquery.ajaxchimp.min.js"></script>
-			<script src="../../vendor/js/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-			<script src="../../vendor/js/nice-select/js/jquery.nice-select.js"></script>
-			<script src="../../vendor/js/mail-script.js"></script>
-			<script src="../../vendor/js/stellar.js"></script>
-			<script src="../../vendor/js/lightbox/simpleLightbox.min.js"></script>
-			<script src="../../vendor/js/custom.js"></script>
+			</footer>
 		</body>
 	</body>
 </html>{% endblock %}
