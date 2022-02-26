@@ -34,6 +34,11 @@ class ReservationController extends AbstractController
     public function check(ManagerRegistry $doctrine)
     {
         // dd($_GET['checkIn']);
+        $checkIn= \DateTime::createFromFormat('Y-m-d', $_GET['checkIn']);
+        $checkOut=\DateTime::createFromFormat('Y-m-d', $_GET['checkOut']);
+        if($checkOut<$checkIn){
+            return new Response('<h1>Check out invalid !<h1>');
+        }else{
         $entityManager = $doctrine->getManager();
         $reservation = new Reservation();
         $chambreId = $_GET['room'];
@@ -53,6 +58,6 @@ class ReservationController extends AbstractController
 
 
         return $this->redirectToRoute('hotel');
-        
+        }   
     }
 }
