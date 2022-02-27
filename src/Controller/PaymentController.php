@@ -22,7 +22,7 @@ class PaymentController extends AbstractController
         ]);
     }
     /**
-     * @Route("/payHotel", name="payment")
+     * @Route("/payHotel", name="paymentHotel")
      */
     public function handleHotelPayment(MailerInterface $mailer, ContainerInterface $container){
         //send mail here
@@ -33,7 +33,7 @@ class PaymentController extends AbstractController
         ]);
     }
     /**
-     * @Route("/payService", name="payment")
+     * @Route("/payService", name="paymentService")
      */
     public function handleServicePayment(MailerInterface $mailer, ContainerInterface $container){
         //send mail here

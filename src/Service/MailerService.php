@@ -7,7 +7,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\ReservationHotel;
 use App\Entity\ReservationService;
 use App\Entity\Reservation;
-use App\Service\MailerService;
+//use App\Service\MailerService;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -75,11 +75,11 @@ class MailerService
         ->from('mailert63@gmail.com')
         ->to($ResaH->getEmail())
         ->cc('mailert63@gmail.com')
-        ->subject('A7la ness')
+        ->subject('VSP-INCOMING')
         ->htmlTemplate('mail/mail.html.twig')
         ->context([
-            'price' => 7500,
-            'username' => 'fourat',
+            'nom_client' =>$ResaH->getNomClient()." ".$ResaH->getPrenomClient() ,
+            'nom_service' => $nomhotel,
         ])
         //add pj
         ->attachFromPath($pdfFilepath);
@@ -129,11 +129,11 @@ class MailerService
         ->from('mailert63@gmail.com')
         ->to($ResaS->getMail())
         ->cc('mailert63@gmail.com')
-        ->subject('A7la ness')
+        ->subject('VSP-INCOMING')
         ->htmlTemplate('mail/mail.html.twig')
         ->context([
-            'price' => 7500,
-            'username' => 'fourat',
+            'nom_client' => $ResaS->getNomClient()." ".$ResaS->getPrenomClient(),
+            'nom_service' => $nomService,
         ])
         //add pj
         ->attachFromPath($pdfFilepath);
