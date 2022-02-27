@@ -58,7 +58,7 @@ class HotelController extends AbstractController
 
         $em->persist($reservationH);
         $em->flush();
-
+        $session->set('reservation_hotel', $reservationH);
         //redirect to Paiment
         return $this->render("payment/paymentHotel.html.twig",[
             'nomHotel' => $nomHotel,
