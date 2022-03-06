@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
@@ -8,7 +9,10 @@ use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 use Faker\Factory;
+
 class HomeController extends AbstractController
 {
     /**
@@ -19,9 +23,9 @@ class HomeController extends AbstractController
         $em = $doctrine->getManager();
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $posts = $repo->findAll();
-        foreach ($posts as $post){
-            $tmp = str_replace('&nbsp;','',strip_tags($post->getContent()));
-            $tmp = str_replace(';','',$tmp);
+        foreach ($posts as $post) {
+            $tmp = str_replace('&nbsp;', '', strip_tags($post->getContent()));
+            $tmp = str_replace(';', '', $tmp);
             $post->setContent($tmp);
             $em->persist($post);
             $em->flush();
@@ -29,8 +33,8 @@ class HomeController extends AbstractController
         $cat = $this->getDoctrine()->getRepository(Category::class);
         $categories = $cat->findAll();
         return $this->render('home/index.html.twig', [
-            'posts'=>$posts,
-            'categories' =>$categories
+            'posts' => $posts,
+            'categories' => $categories
         ]);
     }
 
@@ -40,14 +44,14 @@ class HomeController extends AbstractController
     public function show(Post $post)
     {
         return $this->render('home/post.html.twig', [
-            'post'=>$post
+            'post' => $post
         ]);
     }
 
- 
 
 
-     /**
+
+    /**
      * @Route("/base", name="base")
      */
     public function base(): Response
@@ -58,24 +62,22 @@ class HomeController extends AbstractController
         $cat = $this->getDoctrine()->getRepository(Category::class);
         $categories = $cat->findAll();
         return $this->render('base.html.twig', [
-            'posts'=>$posts,
-            'categories' =>$categories
+            'posts' => $posts,
+            'categories' => $categories
         ]);
     }
 
 
-   /**
-     * @Route("/form/{id}",name="form",methods={"GET"})
+    /**
+     * @Route("/form/{id}",name="form")
      */
-    public function form($id):Response
+    public function form($id): Response
 
     {
-      
-        return $this->render('hotel/form.html.twig',[
+        $session = new Session();
+        $session->set('idHotel', $id);
+        return $this->render('hotel/form.html.twig', [
             'id' => $id
         ]);
-       
-    }  
-    
-    
+    }
 }

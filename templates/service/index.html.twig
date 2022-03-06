@@ -23,7 +23,7 @@
 					</div>
 					<div class="col-md-4 col-md-pull-7">
 						<div class="booking-form">
-							<form action="{{path('reserver')}}" methode="POST">
+							<form action="{{path('reserver')}}" method="POST">
 
 								<div class="row">
 									<div class="col-sm-6">
@@ -70,7 +70,7 @@
 
 								{% if service.stock >0 %}
 									<div class="form-btn">
-										<button class="submit-btn" name="submit" type="submit">Réserver</button>
+										<input class="submit-btn" name="submit" type="submit" value="Réserver">
 									</div>
 								{% else %}
 									<button class="submit-btn" name="submit" type="button" data-toggle="modal" data-target="#myModal">Réserver</button>

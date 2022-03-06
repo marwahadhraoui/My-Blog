@@ -23,6 +23,7 @@ class HotelController extends AbstractController
         $hotels = $repo->findBy(['disponible'=>true]);
         $session = new Session();
         $id = $session->get('id');
+        
         return $this->render('hotel/index.html.twig', [
             'hotels' => $hotels,
             'id' => $id
@@ -30,29 +31,30 @@ class HotelController extends AbstractController
     }
 
      /**
-     * @Route("/setInfo", name="setInfo")
+     * @Route("/setInfo", name="setInfo",methods={"GET","POST"})
      */
     public function setInfo(ManagerRegistry $doctrine)
 
     {
-        $idH=$_GET['idHotel'];
+        $session = new Session();
+        $idH=$session->get('idHotel');
         $hotel = $this->getDoctrine()->getRepository(Hotel::class);
         $h = $hotel->findOneBy(['id' => $idH]);
         $nomHotel =$h->getNom();
         $prixNuitee = $h->getPrixNuitee();
         $em = $doctrine->getManager();
-        $session = new Session();
+       
         $id = $session->get('id');
         $repo = $this->getDoctrine()->getRepository(Reservation::class);
         $check = $repo->findOneBy(['id' =>$id]);
         $reservationH = new ReservationHotel();
-        $reservationH->setNomClient($_GET['nom']);
-        $reservationH->setPrenomClient($_GET['prenom']);
-        $reservationH->setVille($_GET['ville']);
-        $reservationH->setAdresseClient($_GET['adresse']);
-        $reservationH->setCodePostal($_GET['codeP']);
-        $reservationH->setTelephone($_GET['telephone']);
-        $reservationH->setEmail($_GET['email']);
+        $reservationH->setNomClient($_POST['nom']);
+        $reservationH->setPrenomClient($_POST['prenom']);
+        $reservationH->setVille($_POST['ville']);
+        $reservationH->setAdresseClient($_POST['adresse']);
+        $reservationH->setCodePostal($_POST['codeP']);
+        $reservationH->setTelephone($_POST['telephone']);
+        $reservationH->setEmail($_POST['email']);
         $reservationH->setChecks($check);
         $reservationH->setHotel($h);
 

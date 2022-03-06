@@ -30,7 +30,7 @@ class ServiceController extends AbstractController
 
 
     /**
-     * @Route("/reserver/", name="reserver",methods={"GET"})
+     * @Route("/reserver", name="reserver")
      */
     public function reserver(ManagerRegistry $doctrine)
 
@@ -39,7 +39,7 @@ class ServiceController extends AbstractController
 
 
         //récuperer l'id du service
-        $serviceId = $_GET['serviceId'];
+        $serviceId = $_POST['serviceId'];
 
         //création de l'objet service
         $service = new Service();
@@ -55,10 +55,10 @@ class ServiceController extends AbstractController
        
 
             //set les données du client
-            $reservationService->setNomClient($_GET['nom']);
-            $reservationService->setPrenomClient($_GET['prenom']);
-            $reservationService->setMail($_GET['mail']);
-            $reservationService->setTelephone($_GET['telephone']);
+            $reservationService->setNomClient($_POST['nom']);
+            $reservationService->setPrenomClient($_POST['prenom']);
+            $reservationService->setMail($_POST['mail']);
+            $reservationService->setTelephone($_POST['telephone']);
             $reservationService->setService($service_info);
 
 

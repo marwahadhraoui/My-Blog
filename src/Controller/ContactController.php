@@ -20,23 +20,23 @@ class ContactController extends AbstractController
     {
         $em = $doctrine->getManager();
         $contact = new Contact();
-        $contact->setNom($_GET['nom']);
-        $contact->setPrenom($_GET['prenom']);
-        $contact->setAdresse($_GET['email']);
-        $contact->setSujet($_GET['sujet']);
-        $contact->setMessage($_GET['message']);
+        $contact->setNom($_POST['nom']);
+        $contact->setPrenom($_POST['prenom']);
+        $contact->setAdresse($_POST['email']);
+        $contact->setSujet($_POST['sujet']);
+        $contact->setMessage($_POST['message']);
         $em->persist($contact);
         $em->flush();
-        $html = "<p>Bonjour ".$_GET['nom']." ".$_GET['prenom'].", on a bien reçu votre message et on revient vers vous au plus vite!</p>";
+        $html = "<p>Bonjour ".$_POST['nom']." ".$_POST['prenom'].", on a bien reçu votre message et on revient vers vous au plus vite!</p>";
         //sendmail
         $email = (new Email())
         ->from('mailert63@gmail.com')
-        ->to($_GET['email'])
+        ->to($_POST['email'])
         ->cc('mailert63@gmail.com')
         ->subject('Contact')
         ->html($html);
         $mailer->send($email);
-        return $this->render('contact/index.html.twig');
+        return $this->render('contact/succes.html.twig');
            
        
     }
